@@ -11,3 +11,12 @@ CREATE TABLE usuarios (
   senha VARCHAR(64) NOT NULL,
   criado_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+DROP table if exists seguidores;
+create table seguidores(
+  usuario_id integer not null,
+  seguidor_id integer not null,
+  foreign key (usuario_id) references usuarios(id) on delete cascade,
+  foreign key (seguidor_id) references usuarios(id) on delete cascade,
+  primary key (usuario_id, seguidor_id)
+)
