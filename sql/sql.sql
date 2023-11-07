@@ -20,3 +20,14 @@ create table seguidores(
   foreign key (seguidor_id) references usuarios(id) on delete cascade,
   primary key (usuario_id, seguidor_id)
 )
+
+drop table if exists publicacoes;
+create table publicacoes(
+  id serial primary key,
+  titulo varchar(50) not null,
+  conteudo text not null,
+  autor_id integer not null,
+  curtidas integer not null default 0,
+  criadaEm timestamp not null default current_timestamp,
+  foreign key (autor_id) references usuarios(id) on delete cascade
+)
