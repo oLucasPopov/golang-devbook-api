@@ -112,3 +112,32 @@ func (repositorio Publicacoes) Buscar(usuarioID uint64) ([]modelos.Publicacao, e
 
 	return publicacoes, nil
 }
+
+func (repositorio Publicacoes) Atualizar(publicacaoID uint64, publicacao modelos.Publicacao) error {
+	statement, erro := repositorio.db.Prepare(`
+		UPDATE PUBLICACOES
+		   SET TITULO   = $1
+			    ,CONTEUDO = $2
+		 WHERE ID = $3
+	`)
+
+	if erro != nil {
+		return erro
+	}
+	defer statement.Close()
+
+	if _, erro := statement.Exec(publicacao.Titulo, publicacao.Conteudo, publicacaoID); erro != nil {
+		return erro
+	}
+
+	return nil
+}
+
+func (repositorio Publicacoes) Deletar(publicacaoID uint64) error {
+	_, erro := repositorio.db.Exec("DELETE FROM PUBLICACOES WHERE ID = $1", publicacaoID)
+	if erro != nil {
+		return erro
+	}
+
+	return nil
+}
