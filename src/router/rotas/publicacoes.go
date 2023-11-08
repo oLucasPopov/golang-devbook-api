@@ -5,33 +5,38 @@ import (
 	"net/http"
 )
 
+const (
+	uriRotasPublicacoes      string = "/publicacoes"
+	uriRotasPublicacoesComId string = "/publicacoes/{publicacaoId}"
+)
+
 var rotasPublicacoes = []Rota{
 	{
-		Uri:                "/publicacoes",
+		Uri:                uriRotasPublicacoes,
 		Metodo:             http.MethodPost,
 		Funcao:             controllers.CriarPublicacao,
 		RequerAutenticacao: true,
 	},
 	{
-		Uri:                "/publicacoes",
+		Uri:                uriRotasPublicacoes,
 		Metodo:             http.MethodGet,
 		Funcao:             controllers.BuscarPublicacoes,
 		RequerAutenticacao: true,
 	},
 	{
-		Uri:                "/publicacoes/{publicacaoId}",
+		Uri:                uriRotasPublicacoesComId,
 		Metodo:             http.MethodGet,
 		Funcao:             controllers.BuscarPublicacao,
 		RequerAutenticacao: true,
 	},
 	{
-		Uri:                "/publicacoes/{publicacaoId}",
+		Uri:                uriRotasPublicacoesComId,
 		Metodo:             http.MethodPut,
 		Funcao:             controllers.AtualizarPublicacao,
 		RequerAutenticacao: true,
 	},
 	{
-		Uri:                "/publicacoes/{publicacaoId}",
+		Uri:                uriRotasPublicacoesComId,
 		Metodo:             http.MethodDelete,
 		Funcao:             controllers.DeletarPublicacao,
 		RequerAutenticacao: true,
@@ -43,13 +48,13 @@ var rotasPublicacoes = []Rota{
 		RequerAutenticacao: true,
 	},
 	{
-		Uri:                "/publicacoes/{publicacaoId}/curtir",
+		Uri:                uriRotasPublicacoesComId + "/curtir",
 		Metodo:             http.MethodPost,
 		Funcao:             controllers.CurtirPublicacao,
 		RequerAutenticacao: true,
 	},
 	{
-		Uri:                "/publicacoes/{publicacaoId}/descurtir",
+		Uri:                uriRotasPublicacoesComId + "/descurtir",
 		Metodo:             http.MethodPost,
 		Funcao:             controllers.DescurtirPublicacao,
 		RequerAutenticacao: true,
