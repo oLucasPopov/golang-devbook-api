@@ -80,7 +80,7 @@ func (repositorio Publicacoes) Buscar(usuarioID uint64) ([]modelos.Publicacao, e
 					,U.NICK
 		  FROM PUBLICACOES P
 		 INNER JOIN USUARIOS   U ON U.ID = P.AUTOR_ID
-		 INNER JOIN SEGUIDORES S ON S.USUARIO_ID =P.AUTOR_ID
+	    LEFT JOIN SEGUIDORES S ON S.USUARIO_ID =P.AUTOR_ID
 		 WHERE U.ID = $1
 		    OR S.SEGUIDOR_ID = $1
 		 ORDER BY P.ID DESC
