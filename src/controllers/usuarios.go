@@ -47,7 +47,7 @@ func CriarUsuario(w http.ResponseWriter, r *http.Request) {
 	usuario.Id, erro = repositorio.Criar(usuario)
 
 	if erro != nil {
-		respostas.Erro(w, http.StatusInternalServerError, erro)
+		respostas.Erro(w, http.StatusConflict, erro)
 		return
 	}
 
